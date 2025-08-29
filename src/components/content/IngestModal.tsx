@@ -39,6 +39,7 @@ export function IngestModal({ trigger, open, onOpenChange }: IngestModalProps) {
     </DialogContent>
   );
 
+  // When used with a trigger (normal modal behavior)
   if (trigger) {
     return (
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
@@ -50,6 +51,10 @@ export function IngestModal({ trigger, open, onOpenChange }: IngestModalProps) {
     );
   }
 
-  // When used on the /ingest page without trigger
-  return content;
+  // When used without trigger (like on /ingest page) - always wrap in Dialog
+  return (
+    <Dialog open={true} onOpenChange={() => {}}>
+      {content}
+    </Dialog>
+  );
 }

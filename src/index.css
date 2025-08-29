@@ -181,13 +181,16 @@
 
   /* Floating search bar */
   .floating-search {
-    @apply fixed top-6 left-1/2 transform -translate-x-1/2 z-50;
+    @apply fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50;
     @apply w-full max-w-2xl mx-auto px-4;
   }
 
   .search-input {
     @apply glass-card h-14 text-lg px-6 w-full;
     @apply focus-ring placeholder:text-muted-foreground;
+    @apply border-2 border-white/20 shadow-lg;
+    background: hsla(var(--card) / 0.95);
+    backdrop-filter: blur(20px);
     transition: var(--transition-smooth);
   }
 

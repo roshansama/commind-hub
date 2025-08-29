@@ -40,21 +40,36 @@ export function IngestModal({ trigger, open, onOpenChange }: IngestModalProps) {
   );
 
   // When used with a trigger (normal modal behavior)
-  if (trigger) {
+  if (trigger || (open !== undefined && onOpenChange !== undefined)) {
     return (
       <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-        <DialogTrigger asChild>
-          {trigger}
-        </DialogTrigger>
+        {trigger && (
+          <DialogTrigger asChild>
+            {trigger}
+          </DialogTrigger>
+        )}
         {content}
       </Dialog>
     );
   }
 
-  // When used without trigger (like on /ingest page) - always wrap in Dialog
+  // When used without trigger (like on /ingest page) - return just the form content
   return (
-    <Dialog open={true} onOpenChange={() => {}}>
-      {content}
-    </Dialog>
+    <div className="space-y-6">
+      <Tabs defaultValue="url" className="w-full">
+        <TabsList className="grid w-full grid-cols-2 glass">
+          <TabsTrigger value="url" className="focus-ring">Public URL</TabsTrigger>
+          <TabsTrigger value="pdf" className="focus-ring">Upload PDF</TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value="url" className="mt-6">
+          <UrlIngestForm />
+        </TabsContent>
+        
+        <TabsContent value="pdf" className="mt-6">
+          <PdfIngestForm />
+        </TabsContent>
+      </Tabs>
+    </div>
   );
 }

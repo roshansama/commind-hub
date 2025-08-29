@@ -181,7 +181,7 @@
 
   /* Floating search bar */
   .floating-search {
-    @apply fixed top-6 left-1/2 transform -translate-x-1/2 z-50;
+    @apply fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50;
     @apply w-full max-w-2xl mx-auto px-4;
   }
 
